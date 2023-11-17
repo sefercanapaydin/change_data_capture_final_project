@@ -1,7 +1,7 @@
 # VBO Data Engineering Bootcamp Final Project-3: Change Data Capture
-In this project you are expected to grap data changes in postgresql and flow it through Kafka, Spark Streaming and Object storage (MinIO).
+In this project I will grab data changes in postgresql and flow it through Kafka, Spark Streaming and Object storage (MinIO).
 
-You must capture changes like insert, delete, update in customers table. You can follow the steps below:
+I will capture changes like insert, delete, update in customers table.
 
 
 
@@ -79,6 +79,8 @@ Just write the first 1000 records.
 (base) [train@10 change_data_capture_final_project]$ docker exec -it postgres bash
 
 root@5da45c02cf36:/# psql -U postgres -d postgres
+
+- Capture Changes
 
 >>>postgres=# ALTER TABLE customers1 REPLICA IDENTITY FULL;
 
@@ -219,4 +221,11 @@ root@db8b5f6e0e2e:/# spark-submit --master local --packages org.apache.spark:spa
 #Terminal 7 
 root@db8b5f6e0e2e:/# spark-submit --master local --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.1,io.delta:delta-core_2.12:2.4.0 opt/examples/streaming/streaming_kafka_to_minio.py
 
+- Capture Changes
 
+#Terminal 2
+
+
+>>>postgres=# delete from customers1 where "customerId" = 55;
+
+>>>postgres=# UPDATE customers1 SET "customerFName" = 'SAPAYDIN' WHERE "customerId" = 21;
